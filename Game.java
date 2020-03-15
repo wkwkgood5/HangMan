@@ -1,56 +1,61 @@
-package com.company;
-
 public class Game {
-    public static final int MAX_MISSES = 6;
-    private String answer;
-    private String wrong = "";
-    private String right = "";
+  public static final int MAX_MISSES = 7;
+  private String answer;
+  private String hits;
+  private String misses;
 
-    public Game(String answer) {
-        this.answer = answer;
-    }
+  public Game(String answer) {
+    this.answer = answer;
+    hits = "";
+    misses = "";
+  }
 
-    private boolean normalizeChar(char letter) {
-        if (! Character.isLetter(letter)) {
-            throw new IllegalArgumentException("A letter is required");
-        }
-        letter = Character.toLowerCase(letter);
-        if (wrong.indexOf(letter) != -1 || right.indexOf(letter) != -1) {
-            throw new IllegalArgumentException(letter + " has already been guessed");
-        }
-        boolean isRight = answer.indexOf(letter) != -1;
-        if (isRight) {
-            right += letter;
-        } else {
-            wrong += letter;
-        }
-        return isRight;
+  private char normalizeGuess(char letter) {
+    if (! Character.isLetter(letter)) {
+      throw new IllegalArgumentException("A letter is required");
     }
+    letter = Character.toLowerCase(letter);
+    if (misses.indexOf(letter) != -1 || hits.indexOf(letter) != -1) {
+      throw new IllegalArgumentException(letter + " has already been guessed");
+    }
+    return letter;
+  }
 
-    public boolean normalizeString(String input) {
-        if (input.length() == 0) {
-            throw new IllegalArgumentException("No letter found");
-        }
-        return normalizeChar(input.charAt(0));
+  public boolean applyGuess(String letters) {
+    if (letters.length() == 0) {
+      throw new IllegalArgumentException("No letter found");
     }
+    return applyGuess(letters.charAt(0));
+  }
 
-    public int remainingTries() {
-        return MAX_MISSES - wrong.length();
+  public boolean applyGuess(char letter) {
+    letter = normalizeGuess(letter);
+    boolean isHit = answer.indexOf(letter) != -1;
+    if (isHit) {
+      hits += letter;
+    } else {
+      misses += letter;
     }
+    return isHit;
+  }
 
-    public String currentString() {
-        String progress = "";
-        for (char letter : answer.toCharArray()) {
-            char display = '_';
-            if (right.indexOf(letter) != -1) {
-                display = letter;
-            }
-            progress += display;
-        }
-        return progress;
-    }
+  public int getRemainingTries() {
+    return MAX_MISSES - misses.length();
+  }
 
-    public boolean isWin() {
-        return currentString().indexOf('_') == -1;
+  public String getCurrentProgress() {
+    String progress = "";
+    for (char letter : answer.toCharArray()) {
+      char display = '_';
+      if (hits.indexOf(letter) != -1) {
+        display = letter;
+      }
+      progress += display;
     }
+    return progress;
+  }
+
+  public boolean isWon() {
+    return getCurrentProgress().indexOf('_') == -1;
+  }
 }

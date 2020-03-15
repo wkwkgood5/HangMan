@@ -1,18 +1,14 @@
-package com.company;
-
-import com.company.Cue;
-import com.company.Game;
-
 public class Hangman {
 
-    public static void main(String[] args) {
-        Game game = new Game("hang");
-        Cue cue = new Cue(game);
+  public static void main(String[] args) {
+    // Your incredible code goes here...
+    Game game = new Game("evelyn");
+    Prompter prompter = new Prompter(game);
 
-        while (game.remainingTries() > 0 && !game.isWin()) {
-            cue.displayProgress();
-            cue.cueForGuess();
-        }
-        cue.displayOutcome();
+    while (game.getRemainingTries() > 0 && !game.isWon()) {
+      prompter.displayProgress();
+      prompter.promptForGuess();
     }
+    prompter.displayOutcome();
+  }
 }
