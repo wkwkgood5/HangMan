@@ -6,4 +6,4 @@
 
 Note: the secreat word i set in the `Hangman.java` is `ebay`.
 
-<br><br>![add page](https://github.com/wkwkgood5/HangMan/WeChat891d7c832bcb935cdaa516aa34a0575d.png)
+<br><br>!![main page](https://github.com/wkwkgood5/HangMan/WeChat891d7c832bcb935cdaa516aa34a0575d.png)
