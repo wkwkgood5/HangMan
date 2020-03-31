@@ -10,12 +10,12 @@ public class Game {
     misses = "";
   }
 
-  private char normalizeGuess(char letter) {
-    if (! Character.isLetter(letter)) {
+  private char normalizeGuess(char letter) {    
+    if (! Character.isLetter(letter)) {                    //if the input isn't a letter
       throw new IllegalArgumentException("A letter is required");
     }
     letter = Character.toLowerCase(letter);
-    if (misses.indexOf(letter) != -1 || hits.indexOf(letter) != -1) {
+    if (misses.indexOf(letter) != -1 || hits.indexOf(letter) != -1) {      // if the letter has been input
       throw new IllegalArgumentException(letter + " has already been guessed");
     }
     return letter;
@@ -30,7 +30,7 @@ public class Game {
 
   public boolean applyGuess(char letter) {
     letter = normalizeGuess(letter);
-    boolean isHit = answer.indexOf(letter) != -1;
+    boolean isHit = answer.indexOf(letter) != -1;       //if the letter is in the answer, isHit = 1
     if (isHit) {
       hits += letter;
     } else {
@@ -43,7 +43,7 @@ public class Game {
     return MAX_MISSES - misses.length();
   }
 
-  public String getCurrentProgress() {
+  public String getCurrentProgress() {        //show current hits 
     String progress = "";
     for (char letter : answer.toCharArray()) {
       char display = '_';
@@ -55,7 +55,7 @@ public class Game {
     return progress;
   }
 
-  public boolean isWon() {
-    return getCurrentProgress().indexOf('_') == -1;
+  public boolean isWon() {     
+    return getCurrentProgress().indexOf('_') == -1;       //if there isn't '_', win the game
   }
 }
