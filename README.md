@@ -5,3 +5,5 @@
 * Open the command line window in this folder. Type `javac Hangman.java`.After three class fils are generated, then type `java Hangman`. Afterwards, enjoy the game.
 
 Note: the secreat word i set in the `Hangman.java` is `ebay`.
+
+<br><br>![add page](https://github.com/wkwkgood5/HangMan/WeChat891d7c832bcb935cdaa516aa34a0575d.png)
