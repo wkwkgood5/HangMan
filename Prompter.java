@@ -7,13 +7,14 @@ public class Prompter {
     this.game = game;
   }
 
-  public boolean promptForGuess() {
+  public boolean promptForGuess() {           /*read the input, normalization: iae or not. 
+                                                If iae, system requires users to input again.*/
     Scanner scanner = new Scanner(System.in);
     boolean isHit = false;
     boolean isAcceptable = false;
 
     do {
-      System.out.print("Enter a letter: ");
+      System.out.print("Enter a letter: ");               
       String guessInput = scanner.nextLine();
 
       try {
@@ -23,11 +24,11 @@ public class Prompter {
         System.out.printf("%s. Please try again.%n", iae.getMessage());
       }
 
-    } while(! isAcceptable);
+    } while (! isAcceptable);
     return isHit;
-    }
+  }
 
-    public void displayProgress() {
+  public void displayProgress() {
     System.out.printf("You have %d tries left to solve: %s%n", game.getRemainingTries(), game.getCurrentProgress());
     }
 
